@@ -1,0 +1,8 @@
+## Diagrama Notas
+```mermaid
+flowchart TD
+    A[Usuario visita la página] --> B[Página muestra formulario y lista existente]
+    B --> C[Usuario escribe texto en input]
+    C --> D[Usuario hace clic en botón 'Save']
+    D --> E[Se almacena el texto]
+    E --> F[La página se recarga y muestra el texto agregado]
