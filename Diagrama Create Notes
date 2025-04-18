@@ -1,0 +1,23 @@
+# Diagrama notes
+
+User --> Browser: accede a /exampleapp/spa
+Browser --> Server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server --> Browser: Devuelve HTML
+Browser --> Server: GET	https://studies.cs.helsinki.fi/exampleapp/main.cs
+Server --> Browser: Devuelve CSS
+Browser --> Server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server --> Browser: Devuelve código javascript
+Browser --> Server: GET	https://studies.cs.helsinki.fi/exampleapp/data.json
+Server --> Browser: Devuelve las notas en formato JSON
+
+User --> Browser: Llena el input y click en botón save
+Browser --> Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+Browser --> Server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server --> Browser: Devuelve HTML
+Browser --> Server: GET	https://studies.cs.helsinki.fi/exampleapp/main.cs
+Server --> Browser: Devuelve CSS
+Browser --> Server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server --> Browser: Devuelve código javascript
+Browser --> Server: GET	https://studies.cs.helsinki.fi/exampleapp/data.json
+Server --> Browser: Devuelve las notas en formato JSON con la nueva nota incluida
