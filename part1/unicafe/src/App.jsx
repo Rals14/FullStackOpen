@@ -1,15 +1,29 @@
 import { useState } from 'react'
 
 
-const button = (text, handleClick) => (
+const Button = (text, handleClick) => (
   <button onClick={handleClick}>
     {text}
   </button>
 )
 
-const statistics = (text, value) => (
+const Statistic = (text, value) => (
   <p>{text}: {value} </p>
 )
+
+const Statistics = (good, neutral, bad, total, average, positive) => {
+  return (
+    <div>
+      <h1>statistics</h1>
+      {Statistic('good', good)}
+      {Statistic('neutral', neutral)}
+      {Statistic('bad', bad)}
+      {Statistic('all', total)}
+      {Statistic('average', average)}
+      {Statistic('positive', positive + ' %')}
+    </div>
+  )
+}
 
 
 const App = () => {
@@ -20,9 +34,9 @@ const App = () => {
   const [total, setTotal] = useState(0)
   const [average, setAverage] = useState(0)
   const [positive, setPositive] = useState(0)
-  
+
   const handleAverage = () => {
-    const avg = (good*1 + neutral*0 + bad*-1) / total
+    const avg = (good * 1 + neutral * 0 + bad * -1) / total
     setAverage(avg)
   }
 
@@ -43,17 +57,11 @@ const App = () => {
   return (
     <div>
       <h1>give feedback</h1>
-      {button('good', () => handleClick(setGood))}
-      {button('neutral', () => handleClick(setNeutral))}
-      {button('bad', () => handleClick(setBad))}
+      {Button('good', () => handleClick(setGood))}
+      {Button('neutral', () => handleClick(setNeutral))}
+      {Button('bad', () => handleClick(setBad))}
 
-      <h1>statistics</h1>
-      {statistics('good', good)}
-      {statistics('neutral', neutral)}
-      {statistics('bad', bad)}
-      {statistics('all', total)}
-      {statistics('average', average)}
-      {statistics('positive', positive + ' %')}
+      {Statistics(good, neutral, bad, total, average, positive)}
 
     </div>
   )
