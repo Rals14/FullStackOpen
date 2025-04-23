@@ -8,10 +8,16 @@ const Button = (text, handleClick) => (
 )
 
 const StatisticLine = (text, value) => (
-  <p>{text}: {value} </p>
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
 )
 
-const Statistics = (good, neutral, bad, total, average, positive) => {
+const Statistics = (good, neutral, bad, total) => {
+  const average = total === 0 ? 0 : (good - bad) / total
+  const positive = total === 0 ? 0 : (good / total) * 100
+  
   if (total === 0) {
     return (
       <div>
@@ -20,16 +26,19 @@ const Statistics = (good, neutral, bad, total, average, positive) => {
       </div>
     )
   } else {
-
     return (
       <div>
         <h1>statistics</h1>
-        {StatisticLine('good', good)}
-        {StatisticLine('neutral', neutral)}
-        {StatisticLine('bad', bad)}
-        {StatisticLine('all', total)}
-        {StatisticLine('average', average)}
-        {StatisticLine('positive', positive + ' %')}
+        <table>
+          <tbody>
+            {StatisticLine('good', good)}
+            {StatisticLine('neutral', neutral)}
+            {StatisticLine('bad', bad)}
+            {StatisticLine('all', total)}
+            {StatisticLine('average', average)}
+            {StatisticLine('positive', positive + ' %')}
+          </tbody>
+        </table>
       </div>
     )
   }
@@ -42,27 +51,11 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   const [total, setTotal] = useState(0)
-  const [average, setAverage] = useState(0)
-  const [positive, setPositive] = useState(0)
-
-  const handleAverage = () => {
-    const avg = (good * 1 + neutral * 0 + bad * -1) / total
-    setAverage(avg)
-  }
-
-  const handlePositivePercentage = () => {
-    const positivePercentage = (good / total) * 100
-    setPositive(positivePercentage)
-  }
 
   const handleClick = (setState) => {
     setState((prev) => prev + 1)
     setTotal((prev) => prev + 1)
-    handleAverage()
-    handlePositivePercentage()
   }
-
-
 
   return (
     <div>
@@ -71,7 +64,7 @@ const App = () => {
       {Button('neutral', () => handleClick(setNeutral))}
       {Button('bad', () => handleClick(setBad))}
 
-      {Statistics(good, neutral, bad, total, average, positive)}
+      {Statistics(good, neutral, bad, total)}
 
     </div>
   )
