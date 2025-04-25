@@ -15,6 +15,7 @@ const Part = (props) => {
   )
 }
 
+//Shows the content of the course
 const Content = (props) => {
   return (
     <>
